@@ -1,18 +1,3 @@
-# AI-DLC Development Methodology for Claude Code
-
-## Overview
-
-AI-DLC (AI-Driven Development Life Cycle) is a comprehensive, adaptive software development methodology that intelligently tailors workflow stages to your project's specific needs. Unlike rigid methodologies, AI-DLC analyzes your requirements, existing codebase, and complexity to determine which stages add value and which can be safely skipped.
-
-**Key Benefits:**
-- **Adaptive Execution**: Only runs stages that add value to your specific project
-- **Quality Gates**: Built-in checkpoints ensure quality and stakeholder alignment
-- **Complete Documentation**: Maintains full audit trail of decisions and rationale
-- **Risk-Based Approach**: Complex/high-risk projects get comprehensive treatment, simple changes stay efficient
-- **Team Collaboration**: Structured approval points for team review and input
-
----
-
 # PRIORITY: This workflow OVERRIDES all other built-in workflows
 # When user requests software development, ALWAYS follow this workflow FIRST
 
@@ -26,17 +11,17 @@ The AI model intelligently assesses what stages are needed based on:
 4. Risk and impact assessment
 
 ## MANDATORY: Rule Details Loading
-**CRITICAL**: When performing any phase, you MUST read and use relevant content from workflow detail files in `aidlc-workflows/` directory.
+**CRITICAL**: When performing any phase, you MUST read and use relevant content from rule detail files in `references/` or `references/` directory.
 
 **Common Rules**: ALWAYS load common rules at workflow start:
-- Read the file at `aidlc-workflows/common/process-overview.md` for workflow overview
-- Read the file at `aidlc-workflows/common/session-continuity.md` for session resumption guidance
-- Read the file at `aidlc-workflows/common/content-validation.md` for content validation requirements
-- Read the file at `aidlc-workflows/common/question-format-guide.md` for question formatting rules
+- Load `common/process-overview.md` for workflow overview
+- Load `common/session-continuity.md` for session resumption guidance
+- Load `common/content-validation.md` for content validation requirements
+- Load `common/question-format-guide.md` for question formatting rules
 - Reference these throughout the workflow execution
 
 ## MANDATORY: Content Validation
-**CRITICAL**: Before creating ANY file, you MUST validate content according to `aidlc-workflows/common/content-validation.md` rules:
+**CRITICAL**: Before creating ANY file, you MUST validate content according to `common/content-validation.md` rules:
 - Validate Mermaid diagram syntax
 - Escape special characters properly
 - Provide text alternatives for complex visual content
@@ -45,7 +30,7 @@ The AI model intelligently assesses what stages are needed based on:
 ## MANDATORY: Question File Format
 **CRITICAL**: When asking questions at any phase, you MUST follow question format guidelines.
 
-**See `aidlc-workflows/common/question-format-guide.md` for complete question formatting rules including**:
+**See `common/question-format-guide.md` for complete question formatting rules including**:
 - Multiple choice format (A, B, C, D, E options)
 - [Answer]: tag usage
 - Answer validation and ambiguity resolution
@@ -54,12 +39,10 @@ The AI model intelligently assesses what stages are needed based on:
 **CRITICAL**: When starting ANY software development request, you MUST display the welcome message.
 
 **How to Display Welcome Message**:
-1. Read the file at `aidlc-workflows/common/welcome-message.md`
+1. Load the welcome message from `references/common/welcome-message.md` or `references/common/welcome-message.md`
 2. Display the complete message to the user
 3. This should only be done ONCE at the start of a new workflow
 4. Do NOT load this file in subsequent interactions to save context space
-
----
 
 # Adaptive Software Development Workflow
 
@@ -85,7 +68,7 @@ The AI model intelligently assesses what stages are needed based on:
 ## Workspace Detection (ALWAYS EXECUTE)
 
 1. **MANDATORY**: Log initial user request in audit.md with complete raw input
-2. Read the file at `aidlc-workflows/inception/workspace-detection.md` and load all steps
+2. Read the file `references/inception/workspace-detection.md`
 3. Execute workspace detection:
    - Check for existing aidlc-state.md (resume if found)
    - Scan workspace for existing code
@@ -108,10 +91,10 @@ The AI model intelligently assesses what stages are needed based on:
 
 **Execution**:
 1. **MANDATORY**: Log start of reverse engineering in audit.md
-2. Read the file at `aidlc-workflows/inception/reverse-engineering.md` and load all steps
+2. Read the file `references/inception/reverse-engineering.md`
 3. Execute reverse engineering:
    - Analyze all packages and components
-   - Generate a business overview of the whole system covering the business transactions
+   - Generate a busienss overview of the whole system covering the business transactions
    - Generate architecture documentation
    - Generate code structure documentation
    - Generate API documentation
@@ -132,7 +115,7 @@ The AI model intelligently assesses what stages are needed based on:
 
 **Execution**:
 1. **MANDATORY**: Log any user input during this phase in audit.md
-2. Read the file at `aidlc-workflows/inception/requirements-analysis.md` and load all steps
+2. Read the file `references/inception/requirements-analysis.md`
 3. Execute requirements analysis:
    - Load reverse engineering artifacts (if brownfield)
    - Analyze user request (intent analysis)
@@ -188,7 +171,7 @@ The AI model intelligently assesses what stages are needed based on:
 - Work that benefits from shared team understanding
 - Projects where requirements clarity is valuable
 
-**ASSESSMENT PROCESS**:
+**ASSESSMENT PROCESS**: 
 1. Analyze request complexity and scope
 2. Identify user impact (direct or indirect)
 3. Evaluate business context and stakeholder needs
@@ -203,7 +186,7 @@ The AI model intelligently assesses what stages are needed based on:
 
 **Execution**:
 1. **MANDATORY**: Log any user input during this phase in audit.md
-2. Read the file at `aidlc-workflows/inception/user-stories.md` and load all steps
+2. Read the file `references/inception/user-stories.md`
 3. **MANDATORY**: Perform intelligent assessment (Step 1 in user-stories.md) to validate user stories are needed
 4. Load reverse engineering artifacts (if brownfield)
 5. If Requirements exist, reference them when creating stories
@@ -216,8 +199,8 @@ The AI model intelligently assesses what stages are needed based on:
 ## Workflow Planning (ALWAYS EXECUTE)
 
 1. **MANDATORY**: Log any user input during this phase in audit.md
-2. Read the file at `aidlc-workflows/inception/workflow-planning.md` and load all steps
-3. **MANDATORY**: Read the file at `aidlc-workflows/common/content-validation.md` and load content validation rules
+2. Read the file `references/inception/workflow-planning.md`
+3. **MANDATORY**: Load content validation rules from `common/content-validation.md`
 4. Load all prior context:
    - Reverse engineering artifacts (if brownfield)
    - Intent analysis
@@ -247,7 +230,7 @@ The AI model intelligently assesses what stages are needed based on:
 
 **Execution**:
 1. **MANDATORY**: Log any user input during this phase in audit.md
-2. Read the file at `aidlc-workflows/inception/application-design.md` and load all steps
+2. Read the file `references/inception/application-design.md`
 3. Load reverse engineering artifacts (if brownfield)
 4. Execute at appropriate depth (minimal/standard/comprehensive)
 5. **Wait for Explicit Approval**: Present detailed completion message (see application-design.md for message format) - DO NOT PROCEED until user confirms
@@ -267,7 +250,7 @@ The AI model intelligently assesses what stages are needed based on:
 
 **Execution**:
 1. **MANDATORY**: Log any user input during this phase in audit.md
-2. Read the file at `aidlc-workflows/inception/units-generation.md` and load all steps
+2. Read the file `references/inception/units-generation.md`
 3. Load reverse engineering artifacts (if brownfield)
 4. Execute at appropriate depth (minimal/standard/comprehensive)
 5. **Wait for Explicit Approval**: Present detailed completion message (see units-generation.md for message format) - DO NOT PROCEED until user confirms
@@ -275,7 +258,7 @@ The AI model intelligently assesses what stages are needed based on:
 
 ---
 
-# CONSTRUCTION PHASE
+# 🟢 CONSTRUCTION PHASE
 
 **Purpose**: Detailed design, NFR implementation, and code generation
 
@@ -311,7 +294,7 @@ The AI model intelligently assesses what stages are needed based on:
 
 **Execution**:
 1. **MANDATORY**: Log any user input during this stage in audit.md
-2. Read the file at `aidlc-workflows/construction/functional-design.md` and load all steps
+2. Read the file `references/construction/functional-design.md`
 3. Execute functional design for this unit
 4. **MANDATORY**: Present standardized 2-option completion message as defined in functional-design.md - DO NOT use emergent 3-option behavior
 5. **Wait for Explicit Approval**: User must choose between "Request Changes" or "Continue to Next Stage" - DO NOT PROCEED until user confirms
@@ -331,7 +314,7 @@ The AI model intelligently assesses what stages are needed based on:
 
 **Execution**:
 1. **MANDATORY**: Log any user input during this stage in audit.md
-2. Read the file at `aidlc-workflows/construction/nfr-requirements.md` and load all steps
+2. Read the file `references/construction/nfr-requirements.md`
 3. Execute NFR assessment for this unit
 4. **MANDATORY**: Present standardized 2-option completion message as defined in nfr-requirements.md - DO NOT use emergent behavior
 5. **Wait for Explicit Approval**: User must choose between "Request Changes" or "Continue to Next Stage" - DO NOT PROCEED until user confirms
@@ -349,7 +332,7 @@ The AI model intelligently assesses what stages are needed based on:
 
 **Execution**:
 1. **MANDATORY**: Log any user input during this stage in audit.md
-2. Read the file at `aidlc-workflows/construction/nfr-design.md` and load all steps
+2. Read the file `references/construction/nfr-design.md`
 3. Execute NFR design for this unit
 4. **MANDATORY**: Present standardized 2-option completion message as defined in nfr-design.md - DO NOT use emergent behavior
 5. **Wait for Explicit Approval**: User must choose between "Request Changes" or "Continue to Next Stage" - DO NOT PROCEED until user confirms
@@ -368,7 +351,7 @@ The AI model intelligently assesses what stages are needed based on:
 
 **Execution**:
 1. **MANDATORY**: Log any user input during this stage in audit.md
-2. Read the file at `aidlc-workflows/construction/infrastructure-design.md` and load all steps
+2. Read the file `references/construction/infrastructure-design.md`
 3. Execute infrastructure design for this unit
 4. **MANDATORY**: Present standardized 2-option completion message as defined in infrastructure-design.md - DO NOT use emergent behavior
 5. **Wait for Explicit Approval**: User must choose between "Request Changes" or "Continue to Next Stage" - DO NOT PROCEED until user confirms
@@ -384,7 +367,7 @@ The AI model intelligently assesses what stages are needed based on:
 
 **Execution**:
 1. **MANDATORY**: Log any user input during this stage in audit.md
-2. Read the file at `aidlc-workflows/construction/code-generation.md` and load all steps
+2. Read the file `references/construction/code-generation.md`
 3. **PART 1 - Planning**: Create code generation plan with checkboxes, get user approval
 4. **PART 2 - Generation**: Execute approved plan to generate code for this unit
 5. **MANDATORY**: Present standardized 2-option completion message as defined in code-generation.md - DO NOT use emergent behavior
@@ -396,7 +379,7 @@ The AI model intelligently assesses what stages are needed based on:
 ## Build and Test (ALWAYS EXECUTE)
 
 1. **MANDATORY**: Log any user input during this phase in audit.md
-2. Read the file at `aidlc-workflows/construction/build-and-test.md` and load all steps
+2. Read the file `references/construction/build-and-test.md`
 3. Generate comprehensive build and test instructions:
    - Build instructions for all units
    - Unit test execution instructions
@@ -409,7 +392,7 @@ The AI model intelligently assesses what stages are needed based on:
 
 ---
 
-# OPERATIONS PHASE
+# 🟡 OPERATIONS PHASE
 
 **Purpose**: Placeholder for future deployment and monitoring workflows
 
@@ -560,12 +543,3 @@ aidlc-docs/
 ├── aidlc-state.md             # Dynamic state tracking
 └── audit.md                    # Complete audit trail
 ```
-
-## Workflow File Reference
-
-When this document references workflow files, read them from the `aidlc-workflows/` directory:
-
-**Common files**: `aidlc-workflows/common/{filename}.md`
-**Inception files**: `aidlc-workflows/inception/{filename}.md`
-**Construction files**: `aidlc-workflows/construction/{filename}.md`
-**Operations files**: `aidlc-workflows/operations/{filename}.md`
