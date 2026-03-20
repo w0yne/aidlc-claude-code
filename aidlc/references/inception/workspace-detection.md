@@ -11,9 +11,10 @@ Check if `aidlc-docs/aidlc-state.md` exists:
 ## Step 2: Scan Workspace for Existing Code
 
 **Determine if workspace has existing code:**
-- Scan workspace for source code files (.java, .py, .js, .ts, etc.)
+- Scan workspace for source code files (.java, .py, .js, .ts, .jsx, .tsx, .kt, .kts, .scala, .groovy, .go, .rs, .rb, .php, .c, .h, .cpp, .hpp, .cc, .cs, .fs, etc.)
 - Check for build files (pom.xml, package.json, build.gradle, etc.)
 - Look for project structure indicators
+- Identify workspace root directory (NOT aidlc-docs/)
 
 **Record findings:**
 ```markdown
@@ -22,6 +23,7 @@ Check if `aidlc-docs/aidlc-state.md` exists:
 - **Programming Languages**: [List if found]
 - **Build System**: [Maven/Gradle/npm/etc. if found]
 - **Project Structure**: [Monolith/Microservices/Library/Empty]
+- **Workspace Root**: [Absolute path]
 ```
 
 ## Step 3: Determine Next Phase
@@ -51,6 +53,12 @@ Create `aidlc-docs/aidlc-state.md`:
 ## Workspace State
 - **Existing Code**: [Yes/No]
 - **Reverse Engineering Needed**: [Yes/No]
+- **Workspace Root**: [Absolute path]
+
+## Code Location Rules
+- **Application Code**: Workspace root (NEVER in aidlc-docs/)
+- **Documentation**: aidlc-docs/ only
+- **Structure patterns**: See code-generation.md Critical Rules
 
 ## Stage Progress
 [Will be populated as workflow progresses]
